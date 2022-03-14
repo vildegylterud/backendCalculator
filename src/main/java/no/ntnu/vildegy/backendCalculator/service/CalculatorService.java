@@ -53,11 +53,16 @@ public class CalculatorService {
 
             }
             this.calculation = a + " " + operatorSign + " " + b + " = " + result;
+            calculationsRepo.save(new CalculatorResponse(this.calculation));
+            calculations.add(new CalculatorResponse(this.calculation));
+
+
             LOGGER.info("Dette er resultatet: " + this.calculation);
             return new CalculatorResponse(this.calculation);
         }
         return null;
     }
+
 
     public ArrayList<CalculatorResponse> returnInJson() {
         calculations.add(new CalculatorResponse(this.calculation));
