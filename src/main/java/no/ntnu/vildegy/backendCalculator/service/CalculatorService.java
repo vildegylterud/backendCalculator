@@ -67,6 +67,7 @@ public class CalculatorService {
 
     public CalculatorResponse saveCalculation() {
         return calculationsRepo.save(new CalculatorResponse(this.calculation));
+
     }
 }
 

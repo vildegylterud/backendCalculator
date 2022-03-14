@@ -25,16 +25,18 @@ public class CalculatorController {
         public CalculatorResponse doCalculate(final @RequestBody CalculatorRequest calculatorRequest) {
                 return calculatorService.doCalculation(calculatorRequest);
 
+
         }
 
+        /**
         @GetMapping("")
         public ArrayList<CalculatorResponse> returnToJSON() {
                 return calculatorService.returnInJson();
-        }
+        }*/
 
 
 
-        @PostMapping("")
+        @GetMapping("")
         public CalculatorResponse saveToDB() {
                 return calculatorService.saveCalculation();
         }
