@@ -60,7 +60,11 @@ public class CalculatorService {
     public ArrayList<CalculatorResponse> returnInJson() {
         calculations.add(new CalculatorResponse(this.calculation));
         return calculations;
-
     }
+
+    /**
+    public CalculatorRequest saveCalculation() {
+        return calculationsRepo.save(new CalculatorRequest(this.calculation));
+    }*/
 }
 

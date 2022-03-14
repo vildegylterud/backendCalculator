@@ -20,7 +20,6 @@ public class CalculatorController {
         CalculatorService calculatorService;
 
 
-
         @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         @ResponseStatus(value = HttpStatus.CREATED)
         public CalculatorResponse doCalculate(final @RequestBody CalculatorRequest calculatorRequest) {
@@ -32,5 +31,14 @@ public class CalculatorController {
         public ArrayList<CalculatorResponse> returnToJSON() {
                 return calculatorService.returnInJson();
         }
+
+
+        /**
+        @PostMapping("")
+        public void saveToDB() {
+                calculatorService.saveCalculation();
+        }
+
+        */
 }
 

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CalculationsRepo extends JpaRepository<CalculatorRequest, Long> {
 
-    List<CalculatorRequest> findByOperator(String operator);
+    boolean findByOperator(String operator);
 
 }
