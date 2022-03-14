@@ -7,6 +7,7 @@ import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 @Service
 public class CalculatorService {
 
+    @Autowired
     static CalculationsRepo calculationsRepo;
 
     CalculatorService(CalculationsRepo calculationsRepo) {
@@ -62,9 +64,9 @@ public class CalculatorService {
         return calculations;
     }
 
-    /**
-    public CalculatorRequest saveCalculation() {
-        return calculationsRepo.save(new CalculatorRequest(this.calculation));
-    }*/
+
+    public CalculatorResponse saveCalculation() {
+        return calculationsRepo.save(new CalculatorResponse(this.calculation));
+    }
 }
 

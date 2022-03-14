@@ -20,7 +20,7 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(CalculationsRepo calculationsRepo) {
 
         return args -> {
-            log.info("Preloading " + calculationsRepo.save(new CalculatorRequest("4+4=8")));
+            log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8")));
         };
     }
 }

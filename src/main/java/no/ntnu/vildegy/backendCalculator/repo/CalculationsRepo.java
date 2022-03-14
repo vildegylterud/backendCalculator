@@ -1,13 +1,14 @@
 package no.ntnu.vildegy.backendCalculator.repo;
 
-import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface CalculationsRepo extends JpaRepository<CalculatorRequest, Long> {
+@Repository
+public interface CalculationsRepo extends JpaRepository<CalculatorResponse, Long> {
 
-    boolean findByOperator(String operator);
+    Optional<CalculatorResponse> findById(Long id);
 
 }

@@ -33,12 +33,12 @@ public class CalculatorController {
         }
 
 
-        /**
+
         @PostMapping("")
-        public void saveToDB() {
-                calculatorService.saveCalculation();
+        public CalculatorResponse saveToDB() {
+                return calculatorService.saveCalculation();
         }
 
-        */
+
 }
 
