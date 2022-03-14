@@ -12,19 +12,16 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CalculatorResponse {
 
+
     @Column(name = "calculation")
     private String calculatorStatus;
 
-
-    private String calculation;
 
     public CalculatorResponse(@JsonProperty("calculatorStatus")  String calculatorStatus) {
         this.calculatorStatus = calculatorStatus;
     }
 
-    public CalculatorResponse() {
 
-    }
     @JsonProperty("calculatorStatus")
     public String getCalculatorStatus() {
         return calculatorStatus;

@@ -24,11 +24,6 @@ public class CalculatorRequest {
     @Column(name = "calculation")
     private String calculation;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="calculation")
-    @JsonIgnoreProperties("calculations")
-    private List<CalculatorRequest> calculations= new ArrayList<>();
-
-
     @JsonCreator
     public CalculatorRequest(@JsonProperty("firstNumber") String firstNumber, @JsonProperty("secondNumber") String secondNumber, @JsonProperty("operator") String operator) {
         this.firstNumber = firstNumber;
@@ -43,14 +38,13 @@ public class CalculatorRequest {
         this.secondNumber = secondNumber;
         this.operator = operator;
         this.calculation = calculation;
-
     }
 
     public CalculatorRequest() {
-
     }
 
-    public CalculatorRequest(String Calculation) {
+    public CalculatorRequest(String calculation) {
+        this.calculation = calculation;
     }
 
     @JsonProperty("firstNumber")
