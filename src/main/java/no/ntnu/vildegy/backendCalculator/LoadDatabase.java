@@ -2,7 +2,10 @@ package no.ntnu.vildegy.backendCalculator;
 
 import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.LoginRequest;
+import no.ntnu.vildegy.backendCalculator.models.LoginResponse;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
+import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,10 +20,12 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(CalculationsRepo calculationsRepo) {
+    CommandLineRunner initDatabase(CalculationsRepo calculationsRepo, LoginRepo loginRepo) {
 
         return args -> {
             log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8")));
+            log.info("Preloading: " + loginRepo.save(new LoginRequest("hei", "hallo")));
+
         };
     }
 }
