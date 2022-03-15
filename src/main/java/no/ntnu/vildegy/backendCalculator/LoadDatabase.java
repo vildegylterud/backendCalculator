@@ -25,6 +25,7 @@ public class LoadDatabase {
         return args -> {
             log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8")));
             log.info("Preloading: " + loginRepo.save(new LoginRequest("hei", "hallo")));
+            log.info("Preloading: " + loginRepo.save(new LoginRequest("user", "pass")));
 
         };
     }
