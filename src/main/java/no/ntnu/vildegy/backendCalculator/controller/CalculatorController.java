@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/calculate")
@@ -27,21 +28,17 @@ public class CalculatorController {
         }
 
 
-
         @GetMapping("")
         public ArrayList<CalculatorResponse> returnToJSON() {
                 return calculatorService.returnInJson();
         }
-/**
 
 
-        @GetMapping("")
-        public CalculatorResponse saveToDB() {
-                return calculatorService.saveCalculation();
+        @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+        @ResponseStatus(value = HttpStatus.OK)
+        public List<CalculatorResponse> getCalculations() {
+                return calculatorService.getCalculations();
         }
-
-        */
-
 
 }
 

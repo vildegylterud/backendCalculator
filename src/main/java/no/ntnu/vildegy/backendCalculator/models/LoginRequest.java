@@ -53,6 +53,6 @@ public class LoginRequest {
     }
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="username")
-    @JsonIgnoreProperties("calculation")
+    @JsonIgnoreProperties("users")
     private List<LoginRequest> loginRequests = new ArrayList<>();
 }

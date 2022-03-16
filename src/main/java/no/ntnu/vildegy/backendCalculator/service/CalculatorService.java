@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CalculatorService {
@@ -25,6 +26,11 @@ public class CalculatorService {
     private static final Logger LOGGER = LogManager.getLogger(CalculatorController.class);
     String calculation;
     ArrayList<CalculatorResponse> calculations = new ArrayList();
+
+
+    public List<CalculatorResponse> getCalculations() {
+        return this.calculationsRepo.findAll();
+    }
 
     public CalculatorResponse doCalculation(CalculatorRequest calculatorRequest) {
 
