@@ -26,18 +26,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic();
+        http.headers().frameOptions().disable(); //so the H2 databse shows up
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception
     {
-        /*
+
         auth.inMemoryAuthentication()
                 .withUser("admin")
                 .password("{noop}password")
                 .roles("USER");
-        */
+
         auth.authenticationProvider(authProvider);
     }
 }
