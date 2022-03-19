@@ -1,9 +1,7 @@
 package no.ntnu.vildegy.backendCalculator;
 
-import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
-import no.ntnu.vildegy.backendCalculator.models.LoginRequest;
-import no.ntnu.vildegy.backendCalculator.models.LoginResponse;
+import no.ntnu.vildegy.backendCalculator.models.User.LoginRequest;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
 import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.slf4j.Logger;

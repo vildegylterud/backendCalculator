@@ -17,6 +17,7 @@ public class CalculatorResponse {
     @Column(name = "calculation")
     private String calculatorStatus;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

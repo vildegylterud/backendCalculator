@@ -28,6 +28,7 @@ public class CalculatorController {
         }
 
 
+
         @GetMapping("")
         public ArrayList<CalculatorResponse> returnToJSON() {
                 return calculatorService.returnInJson();

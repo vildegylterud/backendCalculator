@@ -1,5 +1,4 @@
 package no.ntnu.vildegy.backendCalculator.security;
-
 import java.util.ArrayList;
 import java.util.List;
 
