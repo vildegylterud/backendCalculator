@@ -2,12 +2,15 @@ package no.ntnu.vildegy.backendCalculator.controller;
 import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
 import no.ntnu.vildegy.backendCalculator.service.CalculatorService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +23,13 @@ public class CalculatorController {
         @Autowired
         CalculatorService calculatorService;
 
+        private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
         @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         @ResponseStatus(value = HttpStatus.CREATED)
         public CalculatorResponse doCalculate(final @RequestBody CalculatorRequest calculatorRequest) {
                 return calculatorService.doCalculation(calculatorRequest);
         }
-
 
 
         @GetMapping("")

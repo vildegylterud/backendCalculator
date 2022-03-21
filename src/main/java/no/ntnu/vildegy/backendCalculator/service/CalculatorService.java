@@ -29,7 +29,7 @@ public class CalculatorService {
 
 
     public List<CalculatorResponse> getCalculations() {
-        return this.calculationsRepo.findAll();
+        return calculationsRepo.findAll();
     }
 
     public CalculatorResponse doCalculation(CalculatorRequest calculatorRequest) {

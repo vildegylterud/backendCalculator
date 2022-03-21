@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse login(final @RequestBody LoginRequest loginRequest) {
+
         return loginService.doLogin(loginRequest);
     }
 }
