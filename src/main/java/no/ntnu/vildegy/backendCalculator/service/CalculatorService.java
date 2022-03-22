@@ -4,7 +4,9 @@ import no.ntnu.vildegy.backendCalculator.controller.CalculatorController;
 
 import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.User.User;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
+import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,11 @@ public class CalculatorService {
 
     @Autowired
     static CalculationsRepo calculationsRepo;
+
+    @Autowired
+    LoginRepo loginRepo;
+
+    User user;
 
     CalculatorService(CalculationsRepo calculationsRepo) {
         this.calculationsRepo = calculationsRepo;
@@ -59,6 +66,10 @@ public class CalculatorService {
 
             }
             this.calculation = a + " " + operatorSign + " " + b + " = " + result;
+
+            saveCalculation();
+
+
             calculationsRepo.save(new CalculatorResponse(this.calculation));
             calculations.add(new CalculatorResponse(this.calculation));
 
@@ -77,7 +88,7 @@ public class CalculatorService {
 
 
     public CalculatorResponse saveCalculation() {
-        return calculationsRepo.save(new CalculatorResponse(this.calculation));
+        return calculationsRepo.saveCalculation(user.getId(), this.calculation);
 
     }
 }

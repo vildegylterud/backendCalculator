@@ -15,6 +15,13 @@ public interface LoginRepo extends JpaRepository<User, Long> {
     @Override
     List<User> findAll();
 
+    @Query("from User where username=?1")
+    User findByUsername(String username);
+
     @Query("from User where username=?1 and password=?2")
     User findByUsernameAndPassword(String username, String password);
+
+    @Query("from User where id=?1")
+    long getId();
+
 }
