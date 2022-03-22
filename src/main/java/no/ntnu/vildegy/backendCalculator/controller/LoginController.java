@@ -24,7 +24,6 @@ import javax.servlet.http.HttpSession;
     @Autowired
     LoginService loginService;
 
-
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse login(final @RequestBody LoginRequest loginRequest, HttpSession session,ModelMap modelMap) {

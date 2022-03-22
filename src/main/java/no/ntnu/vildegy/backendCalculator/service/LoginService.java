@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+
 import javax.servlet.http.HttpSession;
 
 @Service
@@ -24,9 +25,7 @@ public class LoginService {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
-
     public LoginResponse login_user(LoginRequest loginRequest, HttpSession session, ModelMap modelMap) {
-
         User auser = loginRepo.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (auser != null) {
@@ -47,4 +46,12 @@ public class LoginService {
             return new LoginResponse("Fail");
         }
     }
-}
+
+    public LoginResponse logout_user(HttpSession session) {
+        LOGGER.info("Logging out " + loginRepo.getId());
+
+            session.removeAttribute("username");
+            session.invalidate();
+            return new LoginResponse("Success");
+        }
+    }

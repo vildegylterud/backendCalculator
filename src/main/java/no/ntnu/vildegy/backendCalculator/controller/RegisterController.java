@@ -24,11 +24,12 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-
-
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public RegisterResponse register(final @RequestBody RegisterRequest registerRequest) {
         return registerService.addUser(registerRequest);
     }
+
+
+
 }
