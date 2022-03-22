@@ -2,8 +2,8 @@ package no.ntnu.vildegy.backendCalculator.service;
 
 import no.ntnu.vildegy.backendCalculator.controller.CalculatorController;
 
-import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
-import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorRequest;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

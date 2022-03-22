@@ -1,7 +1,7 @@
 package no.ntnu.vildegy.backendCalculator;
 
-import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
-import no.ntnu.vildegy.backendCalculator.models.User.LoginRequest;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.User.User;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
 import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.slf4j.Logger;
@@ -22,8 +22,8 @@ public class LoadDatabase {
 
         return args -> {
             log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8")));
-            log.info("Preloading: " + loginRepo.save(new LoginRequest("hei", "hallo")));
-            log.info("Preloading: " + loginRepo.save(new LoginRequest("user", "pass")));
+            log.info("Preloading: " + loginRepo.save(new User("hei", "hallo")));
+            log.info("Preloading: " + loginRepo.save(new User("user", "pass")));
 
         };
     }

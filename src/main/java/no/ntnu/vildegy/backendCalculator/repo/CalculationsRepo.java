@@ -1,6 +1,6 @@
 package no.ntnu.vildegy.backendCalculator.repo;
 
-import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -3,19 +3,18 @@ package no.ntnu.vildegy.backendCalculator.service;
 import no.ntnu.vildegy.backendCalculator.controller.LoginController;
 import no.ntnu.vildegy.backendCalculator.models.User.LoginRequest;
 import no.ntnu.vildegy.backendCalculator.models.User.LoginResponse;
+import no.ntnu.vildegy.backendCalculator.models.User.User;
 import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class LoginService {
-
     @Autowired
     LoginRepo loginRepo;
 
@@ -25,12 +24,22 @@ public class LoginService {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
-    public List<LoginRequest> getUsers() {
-        return this.loginRepo.findAll();
+    public LoginResponse doLogin(LoginRequest loginRequest) {
+        LOGGER.info("Logging in..." + loginRequest.getUsername());
+
+        if(loginRequest.equals(findUser(loginRequest.getUsername(), loginRequest.getPassword()))) {
+            return new LoginResponse("Success");
+        }
+        return new LoginResponse("Fail");
     }
 
-    public LoginResponse doLogin(LoginRequest loginRequest) {
-        LOGGER.info("Logging in..." + loginRequest.getUsername() + loginRepo.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()));
+    public Optional<User> findUser(String username, String password) {
+        return loginRepo.findAll().stream()
+                .filter(user -> user.getUsername().equals(username) && user.getPassw().equals(password)).findFirst();
+    }
+
+    public LoginResponse doLogin2(LoginRequest loginRequest) {
+        LOGGER.info("Logging in..." + loginRequest.getUsername());
         if(loginRequest.equals(loginRepo.findAll())) {
             return new LoginResponse("Success");
         }

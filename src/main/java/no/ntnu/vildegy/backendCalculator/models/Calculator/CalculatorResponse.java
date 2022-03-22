@@ -1,4 +1,4 @@
-package no.ntnu.vildegy.backendCalculator.models;
+package no.ntnu.vildegy.backendCalculator.models.Calculator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

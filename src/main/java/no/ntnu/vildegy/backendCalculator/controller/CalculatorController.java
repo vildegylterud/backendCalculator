@@ -1,6 +1,6 @@
 package no.ntnu.vildegy.backendCalculator.controller;
-import no.ntnu.vildegy.backendCalculator.models.CalculatorRequest;
-import no.ntnu.vildegy.backendCalculator.models.CalculatorResponse;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorRequest;
+import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
 import no.ntnu.vildegy.backendCalculator.service.CalculatorService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
