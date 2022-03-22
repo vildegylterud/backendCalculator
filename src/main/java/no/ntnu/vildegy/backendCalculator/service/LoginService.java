@@ -9,12 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
+import org.springframework.ui.ModelMap;
+import javax.servlet.http.HttpSession;
 
 @Service
 public class LoginService {
+
     @Autowired
     LoginRepo loginRepo;
 
@@ -24,25 +24,27 @@ public class LoginService {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
-    public LoginResponse doLogin(LoginRequest loginRequest) {
-        LOGGER.info("Logging in..." + loginRequest.getUsername());
 
-        if(loginRequest.equals(findUser(loginRequest.getUsername(), loginRequest.getPassword()))) {
-            return new LoginResponse("Success");
+    public LoginResponse login_user(LoginRequest loginRequest, HttpSession session, ModelMap modelMap) {
+
+        User auser = loginRepo.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
+
+        if (auser != null) {
+            String uname = auser.getUsername();
+            String upass = auser.getPassw();
+
+            LOGGER.info("Logging in..." + uname);
+
+            if (loginRequest.getUsername().equalsIgnoreCase(uname) && loginRequest.getPassword().equalsIgnoreCase(upass)) {
+                session.setAttribute("username", loginRequest.getUsername());
+                return new LoginResponse("Success");
+            } else {
+                modelMap.put("error", "Invalid Account");
+                return new LoginResponse("Fail");
+            }
+        } else {
+            modelMap.put("error", "Invalid Account");
+            return new LoginResponse("Fail");
         }
-        return new LoginResponse("Fail");
-    }
-
-    public Optional<User> findUser(String username, String password) {
-        return loginRepo.findAll().stream()
-                .filter(user -> user.getUsername().equals(username) && user.getPassw().equals(password)).findFirst();
-    }
-
-    public LoginResponse doLogin2(LoginRequest loginRequest) {
-        LOGGER.info("Logging in..." + loginRequest.getUsername());
-        if(loginRequest.equals(loginRepo.findAll())) {
-            return new LoginResponse("Success");
-        }
-        return new LoginResponse("Fail");
     }
 }
