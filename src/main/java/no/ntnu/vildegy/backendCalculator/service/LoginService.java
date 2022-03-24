@@ -47,11 +47,4 @@ public class LoginService {
         }
     }
 
-    public LoginResponse logout_user(HttpSession session) {
-        LOGGER.info("Logging out " + loginRepo.getId());
-
-            session.removeAttribute("username");
-            session.invalidate();
-            return new LoginResponse("Success");
-        }
-    }
+}

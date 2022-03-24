@@ -4,7 +4,6 @@ import no.ntnu.vildegy.backendCalculator.controller.CalculatorController;
 
 import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorRequest;
 import no.ntnu.vildegy.backendCalculator.models.Calculator.CalculatorResponse;
-import no.ntnu.vildegy.backendCalculator.models.User.User;
 import no.ntnu.vildegy.backendCalculator.repo.CalculationsRepo;
 import no.ntnu.vildegy.backendCalculator.repo.LoginRepo;
 import org.apache.logging.log4j.LogManager;
@@ -19,12 +18,11 @@ import java.util.List;
 public class CalculatorService {
 
     @Autowired
-    static CalculationsRepo calculationsRepo;
+    CalculationsRepo calculationsRepo;
 
     @Autowired
     LoginRepo loginRepo;
 
-    User user;
 
     CalculatorService(CalculationsRepo calculationsRepo) {
         this.calculationsRepo = calculationsRepo;
@@ -67,8 +65,6 @@ public class CalculatorService {
             }
             this.calculation = a + " " + operatorSign + " " + b + " = " + result;
 
-            saveCalculation();
-
 
             calculationsRepo.save(new CalculatorResponse(this.calculation));
             calculations.add(new CalculatorResponse(this.calculation));
@@ -86,10 +82,9 @@ public class CalculatorService {
         return calculations;
     }
 
-
-    public CalculatorResponse saveCalculation() {
-        return calculationsRepo.saveCalculation(user.getId(), this.calculation);
-
+    public void saveCalculation() {
+     calculationsRepo.save(new CalculatorResponse(this.calculation));
     }
+
 }
 

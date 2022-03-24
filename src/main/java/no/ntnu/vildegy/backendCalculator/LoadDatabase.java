@@ -18,10 +18,10 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(CalculationsRepo calculationsRepo, LoginRepo loginRepo) {
+    CommandLineRunner initDatabase(LoginRepo loginRepo) {
 
         return args -> {
-            log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8")));
+            //log.info("Preloading " + calculationsRepo.save(new CalculatorResponse("4+4=8", loginRepo.getId())));
             log.info("Preloading: " + loginRepo.save(new User("hei", "hallo")));
             log.info("Preloading: " + loginRepo.save(new User("user", "pass")));
 
