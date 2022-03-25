@@ -12,7 +12,4 @@ public interface CalculationsRepo extends JpaRepository<CalculatorResponse, Long
 
     Optional<CalculatorResponse> findById(Long id);
 
-    @Query("from CalculatorResponse,User where calculatorStatus =?1 and id=?2")
-    CalculatorResponse saveCalculation(long user_id, String calculation);
-
 }

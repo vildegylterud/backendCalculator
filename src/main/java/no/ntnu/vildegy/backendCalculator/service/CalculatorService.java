@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,9 @@ public class CalculatorService {
     LoginRepo loginRepo;
 
 
-    CalculatorService(CalculationsRepo calculationsRepo) {
+    CalculatorService(CalculationsRepo calculationsRepo, LoginRepo loginRepo) {
         this.calculationsRepo = calculationsRepo;
+        this.loginRepo = loginRepo;
     }
 
     private static final Logger LOGGER = LogManager.getLogger(CalculatorController.class);
@@ -37,7 +39,7 @@ public class CalculatorService {
         return calculationsRepo.findAll();
     }
 
-    public CalculatorResponse doCalculation(CalculatorRequest calculatorRequest) {
+    public CalculatorResponse doCalculation(CalculatorRequest calculatorRequest, Long userId) {
 
         float a = Float.parseFloat(calculatorRequest.getFirstNumber());
         float b = Float.parseFloat(calculatorRequest.getSecondNumber());
@@ -66,9 +68,13 @@ public class CalculatorService {
             this.calculation = a + " " + operatorSign + " " + b + " = " + result;
 
 
+            var user = loginRepo.findById(userId);
+            if(user.isEmpty()) {
+                return null;
+            }
+
             calculationsRepo.save(new CalculatorResponse(this.calculation));
             calculations.add(new CalculatorResponse(this.calculation));
-
 
             LOGGER.info("Dette er resultatet: " + this.calculation);
             return new CalculatorResponse(this.calculation);
@@ -77,14 +83,13 @@ public class CalculatorService {
     }
 
 
+
     public ArrayList<CalculatorResponse> returnInJson() {
         calculations.add(new CalculatorResponse(this.calculation));
         return calculations;
     }
 
-    public void saveCalculation() {
-     calculationsRepo.save(new CalculatorResponse(this.calculation));
-    }
+
 
 }
 

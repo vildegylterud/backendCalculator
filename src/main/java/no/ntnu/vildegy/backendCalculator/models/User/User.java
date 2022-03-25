@@ -8,19 +8,19 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long userId;
 
     @Column
     private String username;
     @Column
     private String password;
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long id) {
+        this.userId = id;
     }
 
     public User(String username, String password) {

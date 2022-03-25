@@ -12,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-
 
 @RestController
 @RequestMapping(value = "/register")
